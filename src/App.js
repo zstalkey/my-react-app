@@ -1,28 +1,10 @@
 import React from 'react';
 import Table from './Table';
+import Form from './Form';
 
-class App extends React.Component{
+class App extends React.Component {
   state = {
-    destList:[      {
-      destination: 'Tokyo', 
-      country: 'Japan',
-    },
-    {
-      destination: 'Vienna', 
-      country: 'Austria',
-    },
-    {
-      destination: 'British Columbia', 
-      country: 'Canada',
-    },
-    {
-      destination: 'Berlin', 
-      country: 'Germany',
-    },
-    {
-      destination: 'Tasmania', 
-      country: 'Australia',
-    },],
+    destList: [],
   }
   removeDestination = index => {
     const listofDest = this.state.destList;
@@ -32,11 +14,15 @@ class App extends React.Component{
       })
     })
   }
-  render() { 
+
+  handleSubmit = dest => { this.setState({ destList: [...this.state.destList, dest] }); }
+
+  render() {
     return (
       <div className="App">
         <h1>Places to travel</h1>
-        <Table destinations={this.state.destList} removeDestination={this.removeDestination}/>
+        <Table destinations={this.state.destList} removeDestination={this.removeDestination} />
+        <Form handleSubmit={this.handleSubmit} />
       </div>
     )
   }
